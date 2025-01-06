@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Limite d'Emprunts{% endblock %}
+
+{% block content %}
+<h1>Limite d'Emprunts Atteinte</h1>
+<p>Vous ne pouvez pas emprunter plus de 3 médias à la fois. Veuillez retourner un média avant d'en emprunter un autre.</p>
+<a href="{% url 'liste_emprunts' %}">Voir mes emprunts</a>
+{% endblock %}

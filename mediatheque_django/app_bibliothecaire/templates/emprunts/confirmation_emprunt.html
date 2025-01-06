@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmation d'Emprunt{% endblock %}
+
+{% block content %}
+<h1>Emprunt confirmé !</h1>
+<p>Votre emprunt a bien été enregistré.</p>
+<a href="{% url 'liste_emprunts' %}">Voir les emprunts</a>
+{% endblock %}

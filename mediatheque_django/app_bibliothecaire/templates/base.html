@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Médiathèque en ligne : consultez les livres, DVDs, CDs et jeux disponibles.">
+    <meta name="keywords" content="médiathèque, livres, DVDs, CDs, jeux de plateau, emprunts">
+    <meta name="author" content="Médiathèque">
+    <title>{% block title %}Médiathèque{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% if request.user.is_authenticated %}
+                <p>Bienvenue, {{ request.user.username }}</p>
+                <ul>
+                    <li><a href="{% url 'liste_membres' %}">Membres</a></li>
+                    <li><a href="{% url 'liste_medias' %}">Médias</a></li>
+                    <li><a href="{% url 'liste_emprunts' %}">Emprunts</a></li>
+                    <li><a href="{% url 'custom_logout' %}">Se déconnecter</a></li>
+                </ul>
+            {% else %}
+                <a href="{% url 'custom_login' %}">Se connecter</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Médiathèque</p>
+    </footer>
+</body>
+</html>
+

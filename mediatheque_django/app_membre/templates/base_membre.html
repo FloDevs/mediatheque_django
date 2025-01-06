@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Application Membre{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Médiathèque - Espace Membre</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'app_membre:liste_medias_membre' %}">Médias Disponibles</a></li>
+                <li><a href="{% url 'custom_login' %}">Se connecter</a></li>
+                <li><a href="{% url 'custom_logout' %}">Se déconnecter</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Médiathèque</p>
+    </footer>
+</body>
+</html>
