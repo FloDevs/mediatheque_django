@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Emprunter un Média{% endblock %}
+
+{% block content %}
+
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+<h1>Emprunter un Média</h1>
+
+<form method="post" action="{% url 'emprunter_media' %}">
+    {% csrf_token %}
+    
+    
+    <label for="membre_id">Sélectionnez un membre :</label>
+    <select name="membre_id" id="membre_id" required>
+        <option value="" disabled selected>-- Sélectionnez un membre --</option>
+        {% for membre in membres %}
+        <option value="{{ membre.id }}">{{ membre.nom }}</option>
+        {% endfor %}
+    </select>
+
+    
+    <label for="media_type">Type de média :</label>
+    <select name="media_type" id="media_type" required>
+        <option value="" disabled selected>-- Sélectionnez un type de média --</option>
+        <option value="livre">Livre</option>
+        <option value="dvd">DVD</option>
+        <option value="cd">CD</option>
+    </select>
+
+    
+    <label for="media_id">Sélectionnez un média :</label>
+    <select name="media_id" id="media_id" required>
+        <option value="" disabled selected>-- Sélectionnez un média --</option>
+        {% for livre in livres %}
+        <option value="{{ livre.id }}" data-type="livre">Livre : {{ livre.nom }}</option>
+        {% endfor %}
+        {% for dvd in dvds %}
+        <option value="{{ dvd.id }}" data-type="dvd">DVD : {{ dvd.nom }}</option>
+        {% endfor %}
+        {% for cd in cds %}
+        <option value="{{ cd.id }}" data-type="cd">CD : {{ cd.nom }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Emprunter</button>
+</form>
+
+
+{% endblock %}

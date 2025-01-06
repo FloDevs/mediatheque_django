@@ -1,0 +1,35 @@
+{% extends 'base_membre.html' %}
+
+{% block title %}Liste des Médias{% endblock %}
+
+{% block content %}
+<h1>Liste des Médias Disponibles</h1>
+
+<h2>Livres</h2>
+<ul>
+    {% for livre in livres %}
+    <li>{{ livre.nom }} ({{ livre.auteur }})</li>
+    {% endfor %}
+</ul>
+
+<h2>DVDs</h2>
+<ul>
+    {% for dvd in dvds %}
+    <li>{{ dvd.nom }} ({{ dvd.realisateur }})</li>
+    {% endfor %}
+</ul>
+
+<h2>CDs</h2>
+<ul>
+    {% for cd in cds %}
+    <li>{{ cd.nom }} ({{ cd.artiste }})</li>
+    {% endfor %}
+</ul>
+
+<h2>Jeux de Plateau</h2>
+<ul>
+    {% for jeu in jeux %}
+    <li>{{ jeu.nom }}{% if jeu.createur %} ({{ jeu.createur }}){% endif %}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

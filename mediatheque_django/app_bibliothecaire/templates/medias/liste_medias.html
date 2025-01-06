@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des Médias{% endblock %}
+
+{% block content %}
+<h1>Liste des Médias</h1>
+
+{% if request.user.is_authenticated %}
+    <ul>
+        <li><a href="{% url 'ajouter_media' media_type='livre' %}">Ajouter un Livre</a></li>
+        <li><a href="{% url 'ajouter_media' media_type='dvd' %}">Ajouter un DVD</a></li>
+        <li><a href="{% url 'ajouter_media' media_type='cd' %}">Ajouter un CD</a></li>
+        <li><a href="{% url 'ajouter_media' media_type='jeu' %}">Ajouter un Jeu de Plateau</a></li>
+    </ul>
+{% endif %}
+
+<h2>Livres</h2>
+<ul>
+    {% for livre in livres %}
+        <li>
+            {{ livre.nom }} ({{ livre.auteur }}) {% if not livre.disponible %}(emprunté){% endif %}
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'supprimer_media' 'livre' livre.id %}">Supprimer</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>DVDs</h2>
+<ul>
+    {% for dvd in dvds %}
+        <li>
+            {{ dvd.nom }} ({{ dvd.realisateur }}) {% if not dvd.disponible %}(emprunté){% endif %}
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'supprimer_media' 'dvd' dvd.id %}">Supprimer</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>CDs</h2>
+<ul>
+    {% for cd in cds %}
+        <li>
+            {{ cd.nom }} ({{ cd.artiste }}) {% if not cd.disponible %}(emprunté){% endif %}
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'supprimer_media' 'cd' cd.id %}">Supprimer</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Jeux de Plateau</h2>
+<ul>
+    {% for jeu in jeux %}
+        <li>
+            {{ jeu.nom }} {% if jeu.createur %} ({{ jeu.createur }}){% endif %}
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'supprimer_media' 'jeu' jeu.id %}">Supprimer</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

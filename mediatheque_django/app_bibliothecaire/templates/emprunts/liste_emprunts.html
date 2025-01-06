@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des Emprunts{% endblock %}
+
+{% block content %}
+<h1>Liste des Emprunts</h1>
+<a href="{% url 'emprunter_media' %}">Créer un emprunt</a>
+
+<ul>
+    {% for emprunt in emprunts %}
+    <li>
+        {{ emprunt.membre.nom }} - {{ emprunt.media.nom }} (Retour prévu : {{ emprunt.date_prevu_retour }})
+        <a href="{% url 'retourner_media' emprunt.id %}">Retourner</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
